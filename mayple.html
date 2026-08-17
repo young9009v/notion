@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <style>
+   body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: transparent; }
+#widget {
+  width: 300px; /* 위젯 가로 크기 */
+  height: 200px; /* 위젯 세로 크기 */
+  /* 아래 따옴표 사이에 1단계에서 복사한 PNG 링크를 넣으세요 */
+  background-image:url('mayple1.png');
+  background-size: cover;
+  background-position: center;
+  display: flex; justify-content: left; align-items: left;
+  border-radius: 12px;
+}
+#d-day {
+  font-size: 32px; 
+  font-weight: bold; 
+  color: white; /* 텍스트 색상 */
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.8); /* 배경 이미지 위에서도 글씨가 잘 보이도록 그림자 추가 */
+}
+  </style>
+</head>
+<body>
+ <div id="widget">
+  <div id="d-day">D-Day 계산중...</div>
+</div>
+  
+  <script>
+   // 아래 괄호 안에 목표하는 날짜를 YYYY-MM-DD 형식으로 입력하세요
+const targetDate = new Date("2026-12-31").getTime(); 
+
+setInterval(() => {
+  const today = new Date().getTime();
+  const gap = targetDate - today;
+  const dDay = Math.ceil(gap / (1000 * 60 * 60 * 24));
+  
+  const display = document.getElementById("d-day");
+  if (dDay > 0) { display.innerText = `D-${dDay}`; } 
+  else if (dDay === 0) { display.innerText = "D-Day!"; } 
+  else { display.innerText = `D+${Math.abs(dDay)}`; }
+}, 1000);
+  </script>
+</body>
+</html>
+
